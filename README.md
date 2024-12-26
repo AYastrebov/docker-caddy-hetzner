@@ -1,13 +1,13 @@
-# 🐳 caddy-cloudflare
+# 🐳 caddy-hetzner
 
-[![DockerHub](https://img.shields.io/badge/DockerHub-iarekylew00t%2Fcaddy--cloudflare-blue?style=flat)](https://hub.docker.com/r/iarekylew00t/caddy-cloudflare)
-[![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/IAreKyleW00t/docker-caddy-cloudflare?label=Latest%20Version)](https://github.com/IAreKyleW00t/docker-caddy-cloudflare/tags)
-[![Docker Build & Release](https://github.com/IAreKyleW00t/docker-caddy-cloudflare/actions/workflows/docker.yml/badge.svg)](https://github.com/IAreKyleW00t/docker-caddy-cloudflare/actions/workflows/docker.yml)
-[![License](https://img.shields.io/github/license/IAreKyleW00t/docker-caddy-cloudflare)](https://github.com/IAreKyleW00t/docker-caddy-cloudflare/blob/main/LICENSE)
+[![DockerHub](https://img.shields.io/badge/DockerHub-ayastrebov%2Fcaddy--hetzner-blue?style=flat)](https://hub.docker.com/r/ayastrebov/caddy-hetzner)
+[![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/AYastrebov/docker-caddy-hetzner?label=Latest%20Version)](https://github.com/AYastrebov/docker-caddy-hetzner/tags)
+[![Docker Build & Release](https://github.com/AYastrebov/docker-caddy-hetzner/actions/workflows/docker.yml/badge.svg)](https://github.com/AYastrebov/docker-caddy-hetzner/actions/workflows/docker.yml)
+[![License](https://img.shields.io/github/license/AYastrebov/docker-caddy-hetzner)](https://github.com/AYastrebov/docker-caddy-hetzner/blob/main/LICENSE)
 [![Dependabot](https://img.shields.io/badge/Dependabot-0366d6?style=flat&logo=dependabot&logoColor=white)](.github/dependabot.yml)
 
 The [Caddy](https://hub.docker.com/_/caddy) Docker image with the added
-[caddy-dns/cloudflare](https://github.com/caddy-dns/cloudflare) module for
+[caddy-dns/hetzner](https://github.com/caddy-dns/hetzner) module for
 DNS-01 ACME validation support.  
 Built for the same platforms as the upstream Caddy project (except Windows, sorry)!
 
@@ -17,27 +17,27 @@ Built for the same platforms as the upstream Caddy project (except Windows, sorr
 
 ```sh
 # Docker Hub
-docker pull iarekylew00t/caddy-cloudflare:latest
+docker pull ayastrebov/caddy-hetzner:latest
 
 # GHCR
-docker pull ghcr.io/iarekylew00t/caddy-cloudflare:latest
+docker pull ghcr.io/ayastrebov/caddy-hetzner:latest
 ```
 
 ## Tags
 
 The following tags are the latest available for the
-`iarekylew00t/caddy-cloudflare` image.
+`ayastrebov/caddy-hetzner` image.
 
 <!--START-TAGS-->
 
-- [`latest`](https://github.com/IAreKyleW00t/docker-caddy-cloudflare/tree/v2.8.4)
-- [`2.8.4`](https://github.com/IAreKyleW00t/docker-caddy-cloudflare/tree/v2.8.4)
-- [`2.8`](https://github.com/IAreKyleW00t/docker-caddy-cloudflare/tree/v2.8)
-- [`2`](https://github.com/IAreKyleW00t/docker-caddy-cloudflare/tree/v2)
+- [`latest`](https://github.com/AYastrebov/docker-caddy-hetzner/tree/v2.8.4)
+- [`2.8.4`](https://github.com/AYastrebov/docker-caddy-hetzner/tree/v2.8.4)
+- [`2.8`](https://github.com/AYastrebov/docker-caddy-hetzner/tree/v2.8)
+- [`2`](https://github.com/AYastrebov/docker-caddy-hetzner/tree/v2)
 <!--END-TAGS-->
 
 Check the GitHub
-[Tags](https://github.com/IAreKyleW00t/docker-caddy-cloudflare/tags)
+[Tags](https://github.com/AYastrebov/docker-caddy-hetzner/tags)
 for a list of all versions!
 
 ## Usage
@@ -65,13 +65,13 @@ docker run --rm -it \
   -v caddy_data:/data \
   -v caddy_config:/config \
   -v $PWD/Caddyfile:/etc/caddy/Caddyfile \
-  -e CF_API_TOKEN=UhKLc...JD9jk \
-  iarekylew00t/caddy-cloudflare:latest
+  -e HZ_API_TOKEN=UhKLc...JD9jk \
+  ayastrebov/caddy-hetzner:latest
 ```
 
 If you prefer `docker-compose` you can use the provided
 [`docker-compose.yml`](docker-compose.yml) after updating it with your
-`CF_API_TOKEN`.
+`HZ_API_TOKEN`.
 
 ```sh
 docker compose up
@@ -85,7 +85,7 @@ in your `Caddyfile`
 
 ```Caddyfile
 {
-  acme_dns cloudflare {env.CF_API_TOKEN}
+  acme_dns hetzner {env.HZ_API_TOKEN}
 }
 ```
 
@@ -97,19 +97,19 @@ or via JSON
   "challenges": {
     "dns": {
       "provider": {
-        "name": "cloudflare",
-        "api_token": "{env.CF_API_TOKEN}"
+        "name": "hetzner",
+        "api_token": "{env.HZ_API_TOKEN}"
       }
     }
   }
 }
 ```
 
-See the [caddy-dns/cloudflare](https://github.com/caddy-dns/cloudflare) module
+See the [caddy-dns/hetzner](https://github.com/caddy-dns/hetzner) module
 and [`tls`](https://caddyserver.com/docs/caddyfile/directives/tls#tls) directive
 for advanced usage.
 
-### Creating a Cloudflare API Token
+### Creating a Hetzner API Token
 
 You can generate a Cloudflare API token via the Cloudflare web console using the following steps:
 
@@ -125,7 +125,7 @@ You can generate a Cloudflare API token via the Cloudflare web console using the
 You can easily build the Docker image locally by doing
 
 ```sh
-docker build -t caddy-cloudflare .
+docker build -t caddy-hetzner .
 ```
 
 If you prefer `docker-compose` you can use the provided
@@ -145,16 +145,16 @@ following command to verify the integrity of these images yourself.
 ```sh
 cosign verify \
   --certificate-oidc-issuer https://token.actions.githubusercontent.com \
-  --certificate-identity-regexp https://github.com/IAreKyleW00t/docker-caddy-cloudflare/.github/workflows/ \
-  iarekylew00t/caddy-cloudflare:latest
+  --certificate-identity-regexp https://github.com/AYastrebov/docker-caddy-hetzner/.github/workflows/ \
+  ayastrebov/caddy-hetzner:latest
 ```
 
 ## Contributing
 
 Feel free to contribute and make things better by opening an
-[Issue](https://github.com/IAreKyleW00t/docker-caddy-cloudflare/issues) or
-[Pull Request](https://github.com/IAreKyleW00t/docker-caddy-cloudflare/pulls).
+[Issue](https://github.com/AYastrebov/docker-caddy-hetzner/issues) or
+[Pull Request](https://github.com/AYastrebov/docker-caddy-hetzner/pulls).
 
 ## License
 
-See [LICENSE](https://github.com/IAreKyleW00t/docker-caddy-cloudflare/blob/main/LICENSE).
+See [LICENSE](https://github.com/AYastrebov/docker-caddy-hetzner/blob/main/LICENSE).
