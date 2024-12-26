@@ -1,10 +1,10 @@
 services:
   caddy:
-    image: iarekylew00t/caddy-cloudflare:latest
+    image: ayastrebov/caddy-hetzner:latest
     build: . # If you want build locally using docker-compose
     restart: unless-stopped
     environment:
-      - CF_API_TOKEN=changeme
+      - HZ_API_TOKEN=changeme
     cap_drop:
       - ALL
     cap_add:
